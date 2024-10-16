@@ -62,11 +62,6 @@ jobs:
       run: |
         poetry lock
         poetry install --no-root
-
-    - name: Install pytest
-      run: |
-        source .venv/bin/activate
-        pip install pytest
     
     - name: Run tests
       run: |
@@ -116,13 +111,16 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
+
+          # install the package from the test pypi
           pip install -i https://test.pypi.org/simple/ sfisop-dataspace-sdk --extra-index-url https://pypi.org/simple/
-          pip install --upgrade -i https://test.pypi.org/simple/ sfisop-dataspace-sdk --extra-index-url https://pypi.org/simple/
+          pip install -i https://test.pypi.org/simple/ sfisop-dataspace-sdk --extra-index-url https://pypi.org/simple/  --upgrade
 
 
-
+          
           # install the package from the pypi
           # pip install sfisop-dataspace-sdk
+          # pip install --upgrade sfisop-dataspace-sdk
 
 
           pip install pytest
