@@ -83,7 +83,13 @@ jobs:
       run: |
         poetry lock
         poetry build
+
+        # Publish to testpypi
         twine upload --repository testpypi dist/*
+
+        # Publish to pypi
+        # twine upload dist/*
+
 
 
 
@@ -112,6 +118,12 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -i https://test.pypi.org/simple/ sfisop-dataspace-sdk --extra-index-url https://pypi.org/simple/
           pip install --upgrade -i https://test.pypi.org/simple/ sfisop-dataspace-sdk --extra-index-url https://pypi.org/simple/
+
+
+
+          # install the package from the pypi
+          # pip install sfisop-dataspace-sdk
+
 
           pip install pytest
           pip list
